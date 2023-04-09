@@ -1,0 +1,15 @@
+#AUTORE: Marco Michelini
+#MODIFICHE: Prof. Letizia Leonardi
+Istruzioni per creare una gerarchia:
+1) lanciare lo script "createhierarchy.sh" passando il nome assoluto della directory in cui si vuole creare la gerarchia
+   ad esempio createhierarchy.sh `pwd`
+2) quindi seguire le richieste dei due script e cioe':
+   - inserire il nome relativo semplice della radice della gerarchia
+   - per ogni livello della gerarchia:
+     -- inserire i nomi relativi semplici dei file che si vogliono creare, separati da uno spazio (o una linea vuota se non si vogliono creare file)
+     -- inserire i nomi relativi semplici delle directory che si vogliono creare, separati da uno spazio (o una linea vuota se non si vogliono creare
+     directory)
+     -- per ogni directory creata:
+        --- se si vogliono creare file o directory al suo interno, confermare la richiesta di passaggio alla directory
+   - se si vuole aggiungere un contenuto ai file creati, confermare la richiesta di riempimento dei file
+   - se al punto precedente è stata confermata la richiesta, inserire il contenuto di ogni file (CTRL+D per terminare l'inserimento)
