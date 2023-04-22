@@ -12,7 +12,7 @@ int main(int argc, char** argv) {
         printf("Parametro %d: %s\n", i + 1, argv[i + 1]);
     }
 
-    if (nParametri != 3) {
+    if (nParametri != 3 && nParametri != 2) {
         printf("Errore, il programma si aspetta 3 parametri passati\n");
         exit(1);
     }
@@ -29,11 +29,16 @@ int main(int argc, char** argv) {
     }
     char Cx = argv[2][0];
 
-    if (strlen(argv[3]) != 1) {
-        printf("Errore, il terzo parametro dovrebbe essere un carattere singolo\n");
-        exit(3);
+    char Change;
+    if (nParametri == 3) {
+        if (strlen(argv[3]) != 1) {
+            printf("Errore, il terzo parametro dovrebbe essere un carattere singolo\n");
+            exit(3);
+        }
+        Change = argv[3][0];
+    } else {
+        Change = ' ';
     }
-    char Change = argv[3][0];
 
     while(1) {
         char c;
