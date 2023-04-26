@@ -6,7 +6,7 @@
 int main(int argc, char **argv)
 {
     int nParams = argc - 1;
-
+    
     if (nParams != 2)
     {
         printf("Errore, devi passare 2 soli parametri\n");
