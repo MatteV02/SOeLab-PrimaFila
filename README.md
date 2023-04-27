@@ -17,6 +17,7 @@ This is a repository for the teaching "Sistemi Operativi e Laboratorio" at the U
 ## Content
 - Exercises from exercitations
 - Past exams
+- the text of the exercises can be found at [https://www.didattica.agentgroup.unimo.it/wiki/index.php/Sistemi_Operativi_e_Lab.](https://www.didattica.agentgroup.unimo.it/wiki/index.php/Sistemi_Operativi_e_Lab.)
 
 ## Rules
 - Each contributor must work in a folder with her/his name
