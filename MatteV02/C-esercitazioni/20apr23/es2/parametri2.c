@@ -38,8 +38,8 @@ int main(int argc, char** argv)
 
     printf("L'eseguibile si chiama: %s\n", argv[0]);
     printf("Sono stati passati %d parametri\n", nparametri);
-    printf("Il primo parametro è un nome di file %s", argv[1]);
-    printf("Il secondo parametro è un numero intero strettamente positivo: %d\n", N);
+    printf("Il primo parametro e' un nome di file %s", argv[1]);
+    printf("Il secondo parametro e' un numero intero strettamente positivo: %d\n", N);
     printf("Il terzo parametro e' un carattere singolo: %c\n", C);
 
     exit(0);
