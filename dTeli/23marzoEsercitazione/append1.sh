@@ -29,3 +29,23 @@ cat $2>>$1;;
 exit 1;;
 esac
 
+#!/bin/sh
+
+#cambio la dir corrente alla directory da esplorare
+cd $1 
+
+#esploro la directory
+for F in *
+do
+    
+done
+
+#cerco nuove directory da esplorare
+for F in *
+do
+    #Se F e una directory attraversabile allora richiamo la funzione ricorsiva ed la esploro
+    if test -d F -a -x F
+    then
+        FCR.sh `pwd`/F Parametri aggiuntivi
+    fi
+done

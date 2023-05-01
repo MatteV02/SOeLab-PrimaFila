@@ -27,6 +27,6 @@ int main(int argc, char** argv){
 			conta++;
 		}
 	}
-	printf("il contro e $d",conta);
+	printf("il contro e %d",conta);
 	exit(0);
 }
