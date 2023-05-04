@@ -1,6 +1,6 @@
 #include <stdio.h>	// Includo la libreria per la funzione printf
 #include <stdlib.h>	// Includo la libreria per la funzione exit
-#include <unistd.h>	// Includo la libreria per la funzione close e fork
+#include <unistd.h>	// Includo la libreria per la funzione close, fork, execl
 #include <fcntl.h>	// Includo la libreria per la funzione open e le relative macro
 #include <sys/wait.h>	// Includo la libreria per la funzione wait
 
@@ -30,15 +30,29 @@ int main(int argc, char** argv) {
     
     if (pidChild == 0)
     {	/* processo figlio */
-        close(1);
+        close(0);
         open(argv[1], O_RDONLY);
 
-        execl("mycat", "mycat", )
-
-        exit(0);
+        execl("mycat", "mycat", NULL);
     }
     /* processo padre */
     
+    int status;	// La variabile usata per memorizzare quanto ritornato dalla primitiva wait
+    int ritorno;	// La variabile usata per memorizzare il valore di ritorno del processo figlio
+    if ((pidChild = wait(&status)) < 0) {
+        printf("Non e' stato creato nessun processo figlio\n");
+        exit(4);
+    }
+    
+    if ((status & 0xFF) != 0)
+    {
+        printf("Il processo figlio è stato terminato in modo anomalo\n");
+        exit(4);
+    } else {
+        ritorno = (status >> 8) & 0xFF;
+    }
+    
+    printf("Il pid del figlio e' %d e ha ritornato %d\n", pidChild, ritorno);
 
     exit(0);
 }
