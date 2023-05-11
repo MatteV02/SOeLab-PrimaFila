@@ -46,7 +46,7 @@ int main (int argc, char **argv)
             line[line_length++] = buffer;
 
             if (buffer == '\n') {
-                line[line_length] = 0;
+                line[line_length++] = 0;
                 write(piped[1], &line_length, sizeof(line_length));
                 write(piped[1], line, line_length);
 
