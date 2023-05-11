@@ -116,7 +116,7 @@ int main(int argc, char** argv) {
         } else {
             ritorno = (status >> 8) & 0xFF;
         }
-        printf("il figlio pid=%i ed ha ritornato=%i\n",pidChild,ritorno);
+        printf("il figlio pid=%i ed ha ritornato=%c\n",pidChild,(char)ritorno);
     }
     
 
