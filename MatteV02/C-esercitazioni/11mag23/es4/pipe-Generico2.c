@@ -76,7 +76,6 @@ int main (int argc, char **argv)
     
     while (read(piped[0], &buffer, 1) > 0)	/* ciclo di lettura fino a che riesco a leggere un carattere da file */
     {
-        printf("DEBUG: carattere letto = %d\n", (int)buffer);
         line[line_length++] = buffer;
 
         if (buffer == 0) {
