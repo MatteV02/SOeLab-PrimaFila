@@ -14,11 +14,7 @@ int main(int argc, char** argv) {
         exit(1);
     }
     //controllo se il file e' accedibile
-    int fd = 0; /*variabile che conterra il file descriptor del file che stiamo per aprire */
-    if((fd = open(argv[1], O_RDONLY)) < 0){		/* ERRORE se non si riesce ad aprire in LETTURA il file */
-        printf("Errore in apertura file %s dato che fd = %d\n", argv[1], fd);
-        exit(2);
-    }
+
     pipe_t* piped=malloc(sizeof(pipe_t)*argc-2);
     for(int i=0;i<argc-2;i++){
     if (strlen(argv[i+2]) != 1) {	// #include <string.h>
@@ -39,6 +35,11 @@ int main(int argc, char** argv) {
     
     if (pidChild == 0)
     {	/* processo figlio */
+        int fd = 0; /*variabile che conterra il file descriptor del file che stiamo per aprire */
+        if((fd = open(argv[1], O_RDONLY)) < 0){		/* ERRORE se non si riesce ad aprire in LETTURA il file */
+            printf("Errore in apertura file %s dato che fd = %d\n", argv[1], fd);
+            exit(2);
+        }
         char N;
         //chiudo tutte le pipe in ${1|lettura|scrittura|}
         for(int k=0;k<=i;k++){
@@ -51,14 +52,12 @@ int main(int argc, char** argv) {
         long int contatore = 0;
         while (read(fd, &N, 1) > 0)	/* ciclo di lettura fino a che riesco a leggere un carattere da file */
         {
-            printf("DEBUG:N=%c\n",N);
             if(N==C){
                 contatore++;
             }
         }
-        printf("DEBUG:contatore=%li del processo %i\n",contatore,i);
         write(piped[i][1],&contatore,sizeof(long int));
-        exit(N);
+        exit(C);
     }
 
     }
