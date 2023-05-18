@@ -11,6 +11,7 @@ struct {
 }dato;
 
 int main(int argc, char** argv) {
+    printf("DEBUG:inizio padre\n");
     if (argc < 4) /* controllo sul numero di parametri: devono essere in numero maggiore a 3*/
     {
         printf("Errore: numero di argomenti sbagliato dato che argc = %d\n", argc);
@@ -19,26 +20,32 @@ int main(int argc, char** argv) {
     //controllo se il file e' accedibile
     
     int piped[2];
+    if(pipe(piped)<0){
+        printf("Errore nella creazione della pipe\n");
+    }
+
+    printf("DEBUG:pipe creata\n");
+
     for(int i=0;i<argc-2;i++){
-        if (strlen(argv[i+2]) != 1) {	// #include <string.h>
+        if (strlen(argv[i + 2]) != 1) {	// #include <string.h>
             printf("Errore, la stringa %s non e' un singolo carattere\n", argv[i]);
             exit(3);
         }
         //apro argc-2 pipes
         char C = argv[i+2][0];
         int pid;	// memorizzo il valore di ritorno della funzione fork
-       if(pipe(piped)<0){
-                printf("Errore nella creazione della pipe numero:%i",i);
-        }
+       
         if ((pid = fork()) < 0)	/* Il processo padre crea un figlio */
         {	/* In questo caso la fork e' fallita */
             printf("Errore durante la fork\n");
             exit(4);
         }
+
+        printf("DEBUG:fork\n");
         
         if (pid == 0)
         {	/* processo figlio */
-
+            printf("DEBUG:inizio figlio\n");
             char N;
             close(piped[0]);
             int fd = 0; /*variabile che conterra il file descriptor del file che stiamo per aprire */
