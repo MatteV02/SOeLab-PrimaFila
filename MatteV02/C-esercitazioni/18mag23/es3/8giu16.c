@@ -122,9 +122,7 @@ int main(int argc, char** argv) {
 
                     printf("DEBUG:il figlio %d riceve dal padre la lunghezza %d\n", i, lunghezza_linea);
 
-                    if (posizione_carattere > lunghezza_linea) {
-
-                    } else {
+                    if (posizione_carattere < lunghezza_linea) {
                         if (write(Fcreato, linea + posizione_carattere, 1) == 0) {
                             printf("Errore in scrittura sul file temporaneo da parte del figlio %d\n", i); 
                             exit(254);
@@ -174,7 +172,7 @@ int main(int argc, char** argv) {
         }
     }
     
-    for (size_t i = 0; i < N; i++)
+    for (int i = 0; i < N; i++)
     {
         if ((pidFiglio = wait(&status)) < 0) {
             printf("Non e' stato creato nessun processo figlio\n");
