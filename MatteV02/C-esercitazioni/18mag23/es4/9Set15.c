@@ -4,7 +4,6 @@
 #include <sys/wait.h>	// Includo la libreria per la funzione wait
 #include <stdbool.h>
 #include <sys/types.h>
-#define __USE_POSIX
 #include <signal.h>
 #include <fcntl.h>	// Includo la libreria per la funzione open e le relative macro
 
