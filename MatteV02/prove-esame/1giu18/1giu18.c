@@ -1,7 +1,7 @@
-#include <stdio.h>	// Includo la libreria per la funzione printf
-#include <stdlib.h>	// Includo la libreria per la funzione exit
-#include <unistd.h>	// Includo la libreria per la funzione close, fork, read, write, pipe
-#include <fcntl.h>	// Includo la libreria per la funzione open e le relative macro
+#include <stdio.h>		// Includo la libreria per la funzione printf
+#include <stdlib.h>		// Includo la libreria per la funzione exit
+#include <unistd.h>		// Includo la libreria per la funzione close, fork, read, write, pipe
+#include <fcntl.h>		// Includo la libreria per la funzione open e le relative macro
 #include <sys/wait.h>	// Includo la libreria per la funzione wait
 
 
