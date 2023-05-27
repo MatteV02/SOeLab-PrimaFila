@@ -135,7 +135,7 @@ int main(int argc, char** argv) {
 			
 			if ((status & 0xFF) != 0)
 			{
-				printf("Il processo figlio è stato terminato in modo anomalo\n");
+				printf("Il processo nipote è stato terminato in modo anomalo\n");
 				exit(255);
 			} else {
 				ritorno = (status >> 8) & 0xFF;
@@ -155,13 +155,9 @@ int main(int argc, char** argv) {
 	for (int i = 0; i < N; i++)
 	{
 
-		if (read(pipedFP[i][0], outputFigli, sizeof(outputFigli)) == 0)
-		{
-			printf("Errore, la pipe tra padre e figlio numero %d è stata chiusa prematuramente\n", i); 
-			exit(5);
+		if (read(pipedFP[i][0], outputFigli, sizeof(outputFigli)) != 0) {
+			printf("Il file %s e' \"%s\"\n", argv[i + 1], outputFigli); 
 		}
-
-		printf("Il file %s e' \"%s\"\n", argv[i + 1], outputFigli); 
 	}
 	
 	for (int i = 0; i < N; i++)

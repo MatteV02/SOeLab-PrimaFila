@@ -135,24 +135,25 @@ int main(int argc, char** argv) {
 			 
 			/*legge da standard output ciò che ha scritto il nipote*/
 			j = 0; /*inizalizzo indice stringa*/
-			printf("DEBUG:FIGLIO PRIMA DEL CICLO\n");
 			while(read(pipedNF[i][0], &(l[j]), sizeof(char))){ /*fino a quando ci sono caratteri da leggere dallo standard input*/
-				printf("DEBUG:FIGLIO ENTRA NEL CICLO\n");
 				if(l[j]=='\n'){ /*se trovo il terminatore di linea esco*/
 					break;
 				}
 				j++;
 			}
-			printf("DEBUG:FIGLIO USCITO DAL CICLO\n");
-			l[j]=0; /*al termine della lettura metto il terminatore di stringa*/
-			lunghezza = atoi(l); /*e la converto in intero*/
-			if(lunghezza>=H){ /*se la lunghezza è maggiore o uguale alla media la stringa da scrivere sarà s1*/
-				strcpy(s, s1);
-			} else {
-				strcpy(s, s2); /*altrimenti s2*/
-			}
 
-			write(pipedFP[i][1], s, sizeof(s)); /*figlio comunica al padre la stringa*/
+			if (j != 0) {
+				l[j]=0; /*al termine della lettura metto il terminatore di stringa*/
+				lunghezza = atoi(l); /*e la converto in intero*/
+				if(lunghezza>=H){ /*se la lunghezza è maggiore o uguale alla media la stringa da scrivere sarà s1*/
+					strcpy(s, s1);
+				} else {
+					strcpy(s, s2); /*altrimenti s2*/
+				}
+
+				write(pipedFP[i][1], s, sizeof(s)); /*figlio comunica al padre la stringa*/
+
+			}
 
 			/*figlio aspetta nipote*/
 			if ((pid = wait(&status)) < 0) {
@@ -167,7 +168,6 @@ int main(int argc, char** argv) {
 			} else {
 				ritorno = (status >> 8) & 0xFF;
 			}
-			
 			exit(ritorno);
 		}
 	}
@@ -183,8 +183,9 @@ int main(int argc, char** argv) {
 
 	/*padre legge dalla pipe la stringa comunicata dal figlio*/
 	for(i=0;i<N;i++){
-		read(pipedFP[i][0], s, sizeof(s));
-		printf("Per il file %s la stringa ricevuta corrisponde a '%s'\n", argv[i+1], s);
+		if (read(pipedFP[i][0], s, sizeof(s)) > 0) {
+			printf("Per il file %s la stringa ricevuta corrisponde a '%s'\n", argv[i+1], s);
+		}
 	}
 
 	/*padre aspetta i figli*/
