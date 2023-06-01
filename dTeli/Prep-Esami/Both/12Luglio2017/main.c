@@ -29,6 +29,9 @@ int main(int argc, char** argv) {
 		printf("Errore: numero di argomenti sbagliato dato che argc = %d\n", argc);
 		exit(-1);
 	}
+	if((argc-1)%2!=0){
+		exit(-1);
+	}
 	int N = (argc-1)/2;
 	//apro N pipes
 	pipe_t* piped = (pipe_t*)malloc(sizeof(pipe_t) * (N));
