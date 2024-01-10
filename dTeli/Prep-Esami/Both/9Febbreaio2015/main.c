@@ -110,7 +110,7 @@ int main(int argc, char** argv) {
 			int status;	// La variabile usata per memorizzare quanto ritornato dalla primitiva wait
 			int ritorno;	// La variabile usata per memorizzare il valore di ritorno del processo figlio
 			if ((pidFiglio = wait(&status)) < 0) {
-				printf("Non e' stato creato nessun processo figlio\n");
+				perror("Non e' stato creato nessun processo figlio\n");
 				exit(-1);
 			}
 			
